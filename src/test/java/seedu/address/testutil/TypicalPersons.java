@@ -155,7 +155,7 @@ public class TypicalPersons {
     private TypicalPersons() {} // prevents instantiation
 
     private static String getNextUniqueId() {
-        return String.format("#%06d", uniqueIdCounter++);
+        return String.format("%06d", uniqueIdCounter++);
     }
 
     /**
@@ -170,6 +170,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, AMY, BENSON, BOB, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

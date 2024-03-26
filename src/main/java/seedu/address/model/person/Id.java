@@ -7,10 +7,13 @@ public class Id {
     public static final String MESSAGE_CONSTRAINTS =
             "Ids should only contain numbers";
 
+    public static final String VALIDATION_REGEX = "[#]";
+
     /**
-     * id is current stored with #000000 format
+     * id is current starting from 1
      */
     public final String id;
+
 
     public Id(String id) {
         this.id = id;
@@ -34,8 +37,14 @@ public class Id {
     }
 
     public int getInt() {
-        String results = id.substring(1);
-        return Integer.parseInt(results);
+        int results;
+        if (this.id.matches(VALIDATION_REGEX)) {
+            String temp = this.id.substring(1);
+            results = Integer.parseInt(temp);
+        } else {
+            results = Integer.parseInt(this.id);
+        }
+        return results;
     }
 
 
@@ -48,7 +57,7 @@ public class Id {
     public boolean equals(Object other) {
         if (other instanceof Id) {
             Id otherId = (Id) other;
-            return id.equals(otherId.id);
+            return this.id.equals(otherId.id);
         } else {
             return false;
         }
