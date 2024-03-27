@@ -45,10 +45,10 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Subjects:")
                 .append(person.getSubject())
-                .append("; Payment: ")
-                .append(person.getPayment())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        builder.append("; Payment: ")
+                .append(person.getPayment());
         return builder.toString();
     }
 
