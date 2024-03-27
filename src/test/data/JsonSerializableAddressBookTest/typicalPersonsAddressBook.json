@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "tags" : [ "friends" ],
     "subject": "English",
-    "uniqueId" : "000000",
+    "uniqueId" : "000001",
     "payment": "0.0"
   },{
     "name" : "Amy Bee",
@@ -26,7 +26,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "tags" : [ "owesMoney", "friends" ],
     "subject": "Math",
-    "uniqueId" : "000002",
+    "uniqueId" : "000001",
     "payment": "0.0"
   },{
       "name" : "Bob Choo",
