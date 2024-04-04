@@ -10,6 +10,7 @@ TuteeTally is a **desktop app for managing student contacts, optimized for use v
 
 The system includes features for adding students, viewing student details, viewing summary statistics, and deleting student entries. All inputs are case-insensitive, enhancing user accessibility.
 
+Note: We noticed an existing bug that causes the exams of a student to disappear when we add a new payment
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -22,8 +23,10 @@ The system includes features for adding students, viewing student details, viewi
 <box type="info" seamless>
 Note: If you do not have Java 11 installed on your computer, you can download it from [here](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html).
 
+
 Note: For MacOS users, a compatible Java 11 version is available [here](https://www.azul.com/core-post-download/?endpoint=zulu&uuid=f3e69a90-5b80-4d6b-b14b-eb117b8ef0b4).
 </box>
+
 
 2. Download the latest `tuteetally.jar` from [here](https://github.com/AY2324S2-CS2103T-F10-2/tp/releases).
 
