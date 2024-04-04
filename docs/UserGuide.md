@@ -98,7 +98,7 @@ Editable Fields
 - `UniqueId`
 - `Exams`
  
-Format: `edit -id {ID} -<Insert Field to Edit> {Value}`
+Format: `edit {ID} -<Insert Field to Edit> {Value}`
 
 Example: 
 * `edit 1 -phone91234567 -emailjohndoe@example.com -subjectMath`
