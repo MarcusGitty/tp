@@ -124,6 +124,19 @@ public class Person {
 
     public void addLog(Log entry) {
         logs.addEntry(entry);
+        setLearningStyle(entry);
+    }
+
+    public void setLearningStyle(Log entry) {
+        String learningStyle = entry.getLearningStyle();
+        if (!(tags.contains(learningStyle) && learningStyle.isEmpty())) {
+            addTag(learningStyle);
+        }
+        
+    }
+
+    public void addTag(String tag) {
+        tags.add(new Tag(tag));
     }
 
 

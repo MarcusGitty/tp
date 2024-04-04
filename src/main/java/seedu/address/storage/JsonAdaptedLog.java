@@ -23,11 +23,13 @@ public class JsonAdaptedLog {
      * Constructs a {@code JsonAdaptedLog} with the given log details.
      */
     @JsonCreator
-    public JsonAdaptedLog(@JsonProperty("date") String date, @JsonProperty("learningStyle") String learningStyle,
+    public JsonAdaptedLog(@JsonProperty("date") String date, @JsonProperty("learningStyle") ListString learningStyle,
                              @JsonProperty("hours") String hours, @JsonProperty("lessonContent") String lessonContent,
                              @JsonProperty("notes") String notes) {
         this.date = date;
-        this.learningStyle = learningStyle;
+        if(learningStyle != null){
+            this.learningStyle.addAll(learningStyle);
+        }
         this.hours = hours;
         this.lessonContent = lessonContent;
         this.notes = notes;
@@ -52,10 +54,6 @@ public class JsonAdaptedLog {
     public Log toModelType() throws IllegalValueException {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
-        }
-
-        if (learningStyle == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "learning style"));
         }
 
         if (hours == null) {

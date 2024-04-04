@@ -29,17 +29,26 @@ public class LogCommandParser {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID, PREFIX_HOURS, PREFIX_NOTES, PREFIX_STYLE, PREFIX_CONTENT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_HOURS, PREFIX_NOTES, PREFIX_STYLE, PREFIX_CONTENT)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_HOURS, PREFIX_NOTES, PREFIX_CONTENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LogCommand.MESSAGE_USAGE));
         }
         Id id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
         String hours = argMultimap.getValue(PREFIX_HOURS).get().trim();
         String content = argMultimap.getValue(PREFIX_CONTENT).get().trim();
-        String style = argMultimap.getValue(PREFIX_STYLE).get().trim();
         String notes = argMultimap.getValue(PREFIX_NOTES).get().trim();
+        
+        Log logEntry;
+        if (argMultimap.getValue(PREFIX_STYLE).isPresent()) {
+            String style = argMultimap.getValue(PREFIX_STYLE).get().trim();
+            logEntry = new Log(style, hours, content, notes, null);
+        } else {
+            logEntry = new Log(null, hours, content, notes, null);
+        }
 
-        Log logEntry = new Log(style, hours, content, notes, null);
+
+
+        
 
         return new LogCommand(id.getInt(), logEntry);
     }

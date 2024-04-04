@@ -129,6 +129,29 @@ public class ModelManager implements Model {
         addressBook.addExam(exam);
     }
 
+    @Override
+    public int getTotalPersons() {
+        return addressBook.getTotalPersons();
+    }
+
+    @Override
+    public double getTotalOwings() {
+        return addressBook.getTotalOwings();
+    }
+
+    @Override
+    public void clearSummaryStats() {
+        addressBook.clearSummaryStats();
+    }
+
+    @Override
+    public ObservableList<Exam> getAllExamList() {
+        System.out.println("in model, we print exams: " + addressBook.getAllExamsList().size());
+        //got 0 here which is not right
+        return addressBook.getAllExamsList();
+    }
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -191,27 +214,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
-    @Override
-    public int getTotalPersons() {
-        return addressBook.getTotalPersons();
-    }
-
-    @Override
-    public double getTotalOwings() {
-        return addressBook.getTotalOwings();
-    }
-
-    @Override
-    public void clearSummaryStats() {
-        addressBook.clearSummaryStats();
-    }
-
-    @Override
-    public ObservableList<Exam> getAllExamList() {
-        System.out.println("in model, we print exams: " + addressBook.getAllExamsList().size());
-        //got 0 here which is not right
-        return addressBook.getAllExamsList();
-    }
-
 }
