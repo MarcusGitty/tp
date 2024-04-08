@@ -24,6 +24,7 @@ All commands are case-sensitive.
 
 1. Ensure you have Java `11` or above installed on your Computer. <br>
 <box type="info" seamless>
+Note: If you do not have Java 11 installed on your computer, you can download it from <a href="https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html">here</a>.
 
 **Note:** <br>
 * If you do not have Java 11 installed on your computer, you can download it from <a href="https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html">here</a>. <br>
@@ -77,6 +78,10 @@ All commands are case-sensitive.
 * All id inputs in commands labelled `{ID}` can omit any leading 0s.<br>
 e.g. `1`, `01`, `000001` are all valid id inputs for the id `#000001`
 
+* All `{ID}` are by default *6 digits*. Any id that exceeds a 6 digit number (e.g. 1234567) may cause errors.
+
+* The maximum number of students that can be stored in TuteeTally is 999999. 
+
 * Date inputs must be in the format `yyyy-MM-dd` format. <br>
 e.g. `2024-04-01` is a valid input for date, but not `2024-4-01` or `2024-04-1`
 
@@ -107,9 +112,10 @@ Examples:
 
 ### Editing a student: `edit`
 
-Edit the specific student detail from TuteeTally using the ID.
-
-Parameters: INDEX (must be a positive integer) [-nameNAME] [-phonePHONE] [-emailEMAIL] [-addressADDRESS] [-subjectSUBJECT] [t/TAG]... 
+Edit the specific student detail from TuteeTally using the *INDEX* of the student. <br>
+The index of the student refers to the position of student counting from the top of current displayed list, with the first student being index 1.
+<br>
+Parameters: INDEX (must be a positive integer) [-name NAME] [-phone PHONE] [-email EMAIL] [-address ADDRESS] [t/TAG]... 
 Editable Fields
 - `Name`
 - `Phone`
@@ -211,10 +217,10 @@ Format: `addpayment -id {ID} -payment {AMOUNT}`
 Example: 
 * `addpayment -id 000001 -payment 150` or `addpayment -id 1 -payment 150` would add a payment of 150 to the student with ID #000001 if it exists. <br>
 If the student has no outstanding payments, a 'No payment owed' message will be displayed. <br>
-Following the command, the display will update to show "Payment owed: $150". <br>
+Following the command, the display will update to show "Payment owed: $150".
 After entering the command, the interface will update as shown below:
 
-![Add Payment Update Display](images/payment/add_payment.jpg) _The display showing "Payment owed: $150" after adding a payment._
+![Add Payment Update Display](images/payment/add_payment.png) _The display showing "Payment owed: $150" after adding a payment._
 
 <box type="info" seamless>
 
@@ -273,18 +279,28 @@ After entering the command, the interface will update as shown below: <br>
 Each of these features contributes to a comprehensive financial management system within TuteeTally, enabling tutors to manage their tutoring finances more effectively and efficiently.
 
 ### Add student's exam by id: `addexam`
-This will add an exam to a student by searching for their `id`. Time is an optional field.
+This will add an exam to a student by searching for their `id`. Time is an optional field. Do note that only exams from the current date onwards can be added.
+
 Format 1: `addexam -id {ID} -exam {EXAMNAME} -date {DATE}`
 Format 2: `addexam -id {ID} -exam {EXAMNAME} -date {DATE} -time {TIME}`
+
 Examples:
 * `addexam -id 000001 -exam Computing -date 2024-04-27 -time 09:00` would add an exam of Computing with date of 2024-04-27 and time of 09:00 to a student whose id is 888888 if the student exists.
 After entering the command, the interface will update as shown below: <br>
 
 ![Add Exam Update Display](images/exam/add_exam.jpg) _The display showing a new `COMPUTING` exam of the student with ID #000001 after being added._
 
+<box type="info" seamless>
+
+**Note:** <br>
+* This feature support adding an exam that is on current date but with a past time to allow for tracking exams happening on the same day.
+* If the entered date is yyyy-02-29 in non leap year, 29th will be automatically converted to 28th. Exam of yyyy-02-28 will be added.
+  
+</box>
 
 ### Delete student's exam by id: `deleteexam`
 This will delete an exam from a student by searching for their `id`. Fields should follow exactly from the exam from the exam list that you wish to delete.
+
 Format 1: `deleteexam -id {ID} -exam {EXAMNAME} -date {DATE}`
 Format 2: `deleteexam -id {ID} -exam {EXAMNAME} -date {DATE} -time {TIME}`
 Examples:
@@ -293,20 +309,32 @@ After entering the command, the interface will update as shown below: <br>
 
 ![Delete Exam Update Display](images/exam/delete_exam.jpg) _The display, after the COMPUTING exam for the student with ID #000001 has been deleted, shows the updated status, confirming the successful removal of the exam._
 
+<box type="info" seamless>
+
+**Note:** <br>
+* Past exams specified below will be automatically removed when the user opens TuteeTally at the current date.
+   - Exam of past date and past time
+   - Exam of past date
+   - Exam of current date and past time
+* To update the change to storage, user should use the command `exit` to exit the app.
+
+</box>
 
 ### Logging the Lessons of a student: `log`
-This will log the lessons of a student. The time field of the log entry will be the system time when the log was added.
-Format `log -id {ID} -hours {HOURS} -content {CONTENT} -style {LEARNING STYLE} -notes {NOTES}
+This will add a log to the lessons of a student. The time field of the log entry will be the *system time* when the log was added.
+Format: `log -id {ID} -hours {HOURS} -content {CONTENT} -style {LEARNING STYLE} -notes {NOTES}`
+<box type="info" seamless>
+Note: Hours need not be an integer input. Values like `2 hours 45 mins`, `2+ hours` are valid as well.
+</box>
 Examples:
 * `log -id 000001 -hours 2 -content English Comprehension -style Visual -notes Great improvement!`. would log a lesson for the student with ID #000001 noting that it had great improvement in English Comprehension, it also logs the learning style of the student. <br>
 After entering the command, the interface will update as shown below: <br>
 
 ![Log Update Display](images/log/log.jpg) _The display reflects the successful logging for the student with ID #000001._
 
-<box type="info" seamless>
-
-**Note:** <br>
-Please enter the command `view -id 000001` or `view -id 1` to view the logs of the student with ID #000001. <br>
+<box type="tip" seamless>
+Tip:<br>
+After successful addition, you can check your updated log list using the `view -id {ID}` command!
 </box>
 
 After entering the `view -id 000001` command, the interface will update as shown below: <br>
