@@ -153,6 +153,10 @@ class JsonAdaptedPerson {
         if (!Subject.isValidSubject(subject)) {
             throw new IllegalValueException(Subject.MESSAGE_CONSTRAINTS);
         }
+
+        if (!Id.isValidId(uniqueId)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
         if (uniqueId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }

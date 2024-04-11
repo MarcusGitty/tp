@@ -385,9 +385,14 @@ After entering the `view -id 000001` command, the interface will update as shown
 _The display reflects the updated log entries for the student with ID #000001._
 
 
-### More features `[coming in v1.4]`
+### Editing the data file
 
-_Details coming soon ..._
+TuteeTally's data is saved automatically as a JSON file at `[JAR file location]/data/addressbook.json`. Do proceed carefully if you intend to edit this file directly.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, TuteeTally will discard all data and start with an empty data file at the next run. Hence, it is recommended to make a backup of the file (by copying and pasting to another location) before editing it.<br>
+Furthermore, certain edits can cause the TuteeTally to behave in unexpected and magical ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
