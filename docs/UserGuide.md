@@ -83,7 +83,7 @@ All commands are case-sensitive.
   e.g. if the command specifies `-name {NAME} -address {ADDRESS}`, `-address {ADDRESS} -name {NAME}` is also acceptable.
 
 * All id inputs in commands labelled `{ID}` can omit any leading 0s.<br>
-e.g. `1`, `01`, `000001` are all valid id inputs for the id `#000001`
+e.g. `1`, `01`, `000001`,`000000001` are all valid id inputs for the id `#000001`
 
 * All `{ID}` are by default *6 digits*. Any id that exceeds a 6 digit number (e.g. 1234567) may cause errors.
 
