@@ -118,7 +118,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-F10-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" alt="Model Class Diagram of the Person" />
 
 
 The `Model` component,
@@ -520,11 +520,12 @@ Use case ends.
 
       Use case ends.
 
-
 ### Planned Enhancements
-1. Improve Tuteetally such that automatic past exam removal information is updated at real time to storage.
-   Users need not use the command `exit` to save the automatic past exam removal to storage.
-2. Check the validity of ID in tuteetally.json and loads a empty data file if it's invalid.
+1. Update Edit command to use ID instead of index.
+2. Remove all white spaces from the UI.
+3. Learning styles can be tagged to Person so that it doesn't need to be logged every lesson.
+4. Logging of a lesson will automatically update the payment info.
+5. View -id or -name should automatically filter and show the exams of the person on the right.
 
 ### Non-Functional Requirements
 
