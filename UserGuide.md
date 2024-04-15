@@ -149,7 +149,7 @@ After entering the command, the interface will update as shown below:
 * You can opt to drag the middle portion of the UI to vary the space allocated for student and exam details. <br>
 </box>
 
-### Editing a student: `edit`
+### Editing a student by INDEX: `edit`
 
 Edit the specific student detail from TuteeTally using the _**INDEX**_ of the student. <br>
 The _**INDEX**_ of the student refers to the position of student counting from the top of current displayed list, with the first student being index 1.
@@ -173,7 +173,7 @@ After entering the command, the interface will update as shown below:
 
 ![Edit Student Display](images/edit/edit.jpg) _The display updates to show the student at INDEX 1 with their name and email edited._
 
-### Deleting a student: `delete`
+### Deleting of students by ID: `delete`
 
 Deletes the specified student from the address book.
 
@@ -250,7 +250,7 @@ After entering the command, the interface will update as shown below:
 ![View name Display](images/view/view_name.jpg) _The display showing *ALL* the students with the word `Benson` or `Meier` in their name._
 
 
-### View student particular by id: `view -id`
+### View student particular by ID: `view -id`
 This will display a specific student by searching for their id, this also pops up the lesson logs of the student. <br>
 **Format:** `view -id {ID}`
 
@@ -265,7 +265,7 @@ After entering the command, the interface will update as shown below:
 
 TuteeTally's payment management commands are designed to streamline the financial interactions between tutors and students, ensuring accuracy and transparency. Below are detailed explanations of each command's purpose and benefits:
 
-### Adding a Payment: `addpayment`
+### Adding a Payment to students by ID: `addpayment`
 
 Record new payments easily with the `addpayment` command, keeping track of what each student owes. This command simplifies the maintenance of financial records, ensuring you never overlook an outstanding payment.
 
@@ -274,11 +274,18 @@ Record new payments easily with the `addpayment` command, keeping track of what 
 **Example:**
 * `addpayment -id 000001 -payment 150` or `addpayment -id 1 -payment 150` would add a payment of 150 to the student with ID #000001 if it exists. <br>
 
+<box type="info" seamless>
+
+**Note:** <br>
+* If you add a payment of $0.00, there will be no changes to the display screen. <br>
+
+</box>
+
 After entering the command, the interface will update as shown below:
 
 ![Add Payment Update Display](images/payment/add_payment.jpg) _The display showing "Payment owed: $150.00" after adding a payment._
 
-### Marking Payment of the student: `markpayment`
+### Marking Payment of students by ID: `markpayment`
 
 The `markpayment` command allows you to update the status of a student's payment to reflect payments that have been made. This feature helps maintain a clear record of completed transactions, building trust and transparency. <br>
 
@@ -298,7 +305,7 @@ After entering the command, the interface will update as shown below: <br>
 
 </box>
 
-### Resetting all Payments of the student: `resetpayments`
+### Resetting all Payments of students by ID: `resetpayments`
 <box type="info" seamless>
 
 **For your information:** <br>
@@ -318,7 +325,7 @@ After entering the command, the interface will update as shown below: <br>
 
 Each of these features contributes to a comprehensive financial management system within TuteeTally, enabling tutors to manage their tutoring finances more effectively and efficiently.
 
-### Add student's exam by id: `addexam`
+### Add student's exam by ID: `addexam`
 This will add an exam to a student by searching for their `ID`. Time is an optional field. Do note that only exams from the current date onwards can be added.
 
 **Format 1:** `addexam -id {ID} -exam {EXAMNAME} -date {DATE}` <br>
@@ -329,8 +336,8 @@ This will add an exam to a student by searching for their `ID`. Time is an optio
 **Notes on the fields for addexam command:**
 
 | Field         | Prefix  | Required | Caveats                                                                                                                                                                                                                                                                                    |
-|---------------|---------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Unique ID** | `-id`   |  Yes     |  Unique ID must be a positive integer with a maximum length of 6 digits excluding leading zeros. <br> Leading zeros are optional. For example, `1`, `01`, and `000000001` are all valid representations for the ID #000001. IDs between `1` and `999999` (inclusive) are considered valid. |
+|---------------|---------|:---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Unique ID** | `-id`   | Yes      |  Unique ID must be a positive integer with a maximum length of 6 digits excluding leading zeros. <br> Leading zeros are optional. For example, `1`, `01`, and `000000001` are all valid representations for the ID #000001. IDs between `1` and `999999` (inclusive) are considered valid. |
 | **Exam**      | `-exam` | Yes      | Exam should be a string, special characters are allowed.                                                                                                                                                                                                                                   |
 | **Date**      | `-date` | Yes      | Date inputs must be in the format yyyy-MM-dd format. Date must be from current date onwards. <br> e.g. 2024-04-01 is a valid input for date, but not 2024-4-01 or 2024-04-1                                                                                                                |
 | **Time**      | `-time` | Nope     | Time inputs are in the 24-hour format in the form HH:mm. <br> e.g. 07:00 is a valid time input and refers to 7am, but not 7:00                                                                                                                                                             |
@@ -354,12 +361,12 @@ After entering the command, the interface will update as shown below: <br>
 <box type="info" seamless>
 
 **Note:** <br>
-* This feature support adding an exam that is on current date but with a past time to allow for tracking exams happening on the same day.
-* If the entered date is yyyy-02-29 in non leap year, 29th will be automatically converted to 28th. Exam of yyyy-02-28 will be added.
+* This feature allows users to add exams scheduled for earlier times on the current date, enabling accurate tracking of all exams occurring on the same day.
+* If the entered date does not exist, such as February 31, the system will automatically adjust the date to the last valid day of the month. For example, "2028-02-31" will be changed to "2028-02-29" if it is a leap year, otherwise to "2028-02-28".
 
 </box>
 
-### Delete student's exam by id: `deleteexam`
+### Delete student's exam by ID: `deleteexam`
 This will delete an exam from a student by searching for their `ID`. Fields should follow exactly from the exam from the exam list that you wish to delete.
 
 **Format 1:** `deleteexam -id {ID} -exam {EXAMNAME} -date {DATE}` <br>
@@ -384,7 +391,7 @@ After entering the command, the interface will update as shown below: <br>
 
 </box>
 
-### Logging the Lessons of a student: `log`
+### Logging the lessons of a student by ID: `log`
 
 This will add a log to the lessons of a student. The time field of the log entry will be the *system time* when the log was added.
 
@@ -476,7 +483,7 @@ TuteeTally's data is saved automatically as a JSON file at `[JAR file location]/
 
 2. **Payment Rounding Display**: Payment amounts are displayed rounded to the nearest cent ($0.01). For example, an entry of `$0.001` will be shown as `$0.00`. However, the application accurately tracks and records the exact amounts entered. <br>
 
-3. **Zero Balance Command Entry**: If a student's balance is already $0, entering a `markpayment` or `resetpayments` command is permitted, but no changes will be made. <br>
+3. **Zero Balance Command Entry**: If a student's balance is already $0, entering `markpayment` or `resetpayments` command is permitted, but no changes will be made. <br>
 
 4. **Maximized View Anomaly**: When the application is maximized, an empty white block may appear at the bottom of the screen. <br>
 
