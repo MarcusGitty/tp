@@ -18,6 +18,8 @@ public class IsSameIdPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        System.out.println("Person id " + person.getUniqueId().getInt());
+        System.out.println("Test id " + testId);
         int personId = Integer.parseInt(person.getUniqueId().id);
         return testId == personId;
     }

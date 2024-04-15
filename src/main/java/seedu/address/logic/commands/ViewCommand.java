@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.IsSameIdPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -74,17 +75,18 @@ public class ViewCommand extends Command {
             return new CommandResult(
                     String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
         } else if (idPredicate != null) {
-            generateFilteredIdList(model);
-            int filteredListSize = model.getFilteredPersonList().size();
-            if (filteredListSize == 0) {
+            System.out.println(idPredicate.getTestId());
+            try {
+                generateFilteredIdList(model);
+            } catch (ParseException e) {
                 return new CommandResult(Messages.MESSAGE_PERSON_NOT_FOUND);
-            } else {
-                Person person = model.getFilteredPersonList().get(0);
-                return new CommandResult(
-                        String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
-                        person.getLogs().toString(),
-                        false, false, false, true);
             }
+            int filteredListSize = model.getFilteredPersonList().size();
+            Person person = model.getFilteredPersonList().get(0);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, filteredListSize),
+                    person.getLogs().toString(),
+                    false, false, false, true);
         } else {
             // Should not reach here
             assert false;
@@ -98,11 +100,12 @@ public class ViewCommand extends Command {
         model.updateFilteredPersonList(namePredicate);
     }
 
-    private void generateFilteredIdList(Model model) {
+    private void generateFilteredIdList(Model model) throws ParseException {
         assert namePredicate == null : "only 1 prefix should be present";
         logger.info("Started executing view id command");
         if (!model.hasPersonById(idPredicate.getTestId())) {
             logger.info("No person with id found");
+            throw new ParseException(Messages.MESSAGE_PERSON_NOT_FOUND);
         } else if (model.hasPersonById(idPredicate.getTestId())) {
             logger.info("Found a student with id");
             model.updateFilteredPersonList(idPredicate);
