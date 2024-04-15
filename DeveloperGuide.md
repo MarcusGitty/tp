@@ -323,7 +323,7 @@ The CommandResult will then be returned to the UIManager and a SummaryStatsWindo
 it get the SummaryStats from `Logic`the respective frame will show `SummaryStatsWindow::updateSummaryStats` clearly. 
 
 <puml src="diagrams/ViewStatsSequenceDiagramUpdateTotalCountofPersons.puml" alt="ViewStatsSequenceDiagramUpdateTotalCountofPerson" />
-<puml src="diagrams/ViewStatsSequenceDiagramUpdateTotalOwingsOfPersons.puml" alt="ViewStatsSequenceDiagramUpdateTotalOwingsOfPersons" />
+<puml src="diagrams/ViewStatsSequenceDiagramUpdateTotalOwingsofPersons.puml" alt="ViewStatsSequenceDiagramUpdateTotalOwingsOfPersons" />
 <puml src="diagrams/ViewStatsSequenceDiagramUpdateUpcomingExams.puml" alt="ViewStatsSequenceDiagramUpdateUpcomingExams" />
 
 #### Design Considerations
@@ -559,7 +559,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Use cases
 
 <puml src="diagrams/UseCaseDiagram.puml" alt="UseCaseDiagram" /> <br>
-(For all use cases below, the **System** is`TuteeTally` and the **Actor** is the `user`, unless specified otherwise)
+
+> [!NOTE]
+> For all use cases below, the **System** is`TuteeTally` and the **Actor** is the `user`, unless specified otherwise
 
 **Use case: Add a Student**
 
@@ -811,8 +813,6 @@ testers are expected to do more *exploratory* testing.
 - Re-launch the app by double-clicking the jar file.
   **Expected**: The most recent window size and location is retained.
 
-#### 3. _{ more test cases …​ }_
-
 ### Deleting a Person
 
 #### 1. Deleting a Person While All Persons Are Being Shown
@@ -823,8 +823,6 @@ testers are expected to do more *exploratory* testing.
   **Expected**: No person is deleted. Error details shown in the status message. Status bar remains the same.
 - **Other Incorrect Delete Commands to Try**: `delete`, `delete x`, `...` (where x is larger than the list size)
   **Expected**: Similar to previous.
-
-#### 2. _{ more test cases …​ }_
 
 ### Payment Commands
 
