@@ -83,10 +83,10 @@ public class ViewCommand extends Command {
             }
             int filteredListSize = model.getFilteredPersonList().size();
             Person person = model.getFilteredPersonList().get(0);
-                return new CommandResult(
-                        String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, filteredListSize),
-                        person.getLogs().toString(),
-                        false, false, false, true);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, filteredListSize),
+                    person.getLogs().toString(),
+                    false, false, false, true);
         } else {
             // Should not reach here
             assert false;
