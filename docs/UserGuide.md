@@ -338,8 +338,7 @@ This will add an exam to a student by searching for their `ID`. Time is an optio
 <box type="info" seamless>
 
 **Note:**
-* For this specific command, it is acceptable to omit spaces between the prefix and the input. <br>
-* For example, the command addexam -id{ID} -exam{EXAMNAME} -date{DATE} can be entered without spaces. However, the GUI displays an error message if spaces are not included between prefixes and inputs.
+* For this particular command, not leaving a space between prefix and input e.g. `addexam -id{ID} -exam{EXAMNAME} -date{DATE}` is also accepted. GUI error message is the version without spaces between prefix and input.<br>
 
 </box>
 
