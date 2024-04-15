@@ -274,6 +274,13 @@ Record new payments easily with the `addpayment` command, keeping track of what 
 **Example:**
 * `addpayment -id 000001 -payment 150` or `addpayment -id 1 -payment 150` would add a payment of 150 to the student with ID #000001 if it exists. <br>
 
+<box type="info" seamless>
+
+**Note:** <br>
+* If you add a payment of $0.00, there will be no changes to the display screen. <br>
+
+</box>
+
 After entering the command, the interface will update as shown below:
 
 ![Add Payment Update Display](images/payment/add_payment.jpg) _The display showing "Payment owed: $150.00" after adding a payment._
@@ -476,7 +483,7 @@ TuteeTally's data is saved automatically as a JSON file at `[JAR file location]/
 
 2. **Payment Rounding Display**: Payment amounts are displayed rounded to the nearest cent ($0.01). For example, an entry of `$0.001` will be shown as `$0.00`. However, the application accurately tracks and records the exact amounts entered. <br>
 
-3. **Zero Balance Command Entry**: If a student's balance is already $0, entering any payment commands is permitted, but no changes will be made. <br>
+3. **Zero Balance Command Entry**: If a student's balance is already $0, entering `markpayment` or `resetpayments` command is permitted, but no changes will be made. <br>
 
 4. **Maximized View Anomaly**: When the application is maximized, an empty white block may appear at the bottom of the screen. <br>
 
